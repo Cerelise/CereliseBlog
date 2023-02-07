@@ -1,0 +1,30 @@
+# backend 
+/blogsite/db.sqlite3
+/blogsite/upload
+/blogsite/blog/__pycache__
+/blogsite/blog/migrations
+/blogsite/blogsite/__pycache__
+/blogsite/blogsite/settings.py
+
+# frontend
+/blogpage/node_modules
+/blogpage/dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Log filesa
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
