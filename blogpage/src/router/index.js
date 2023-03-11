@@ -30,6 +30,12 @@ const routes = [
     name: "Register",
     component: () => import("../views/Register.vue")
   },
+  // 重置密码
+  {
+    path: "/resetpwd",
+    name: "ResetPwd",
+    component: () => import("../views/ResetPwd.vue")
+  },
   // 添加文章
   {
     path: "/add-article",

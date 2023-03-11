@@ -11,7 +11,8 @@ export default new Vuex.Store({
   state: {
     currentname: "",
     loginmessage: "",
-    userinfo: {}
+    userinfo: {},
+    baseUrl: "http://127.0.0.1:9000/"
   },
   getters: {
     // 查询登录状态

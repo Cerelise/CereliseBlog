@@ -1,5 +1,5 @@
 <template>
-  <div id="login-page">
+  <div id="login-page" class="flex">
     <div class="page loginbox">
       <div class="header">
         用户登录
@@ -14,9 +14,14 @@
           <el-input v-model="formData.username"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="formData.password"></el-input>
+          <el-input v-model="formData.password" show-password></el-input>
+          <div style="display: flex;flex-direction: row-reverse;">
+            <a href="" @click.prevent="toResetPwd()" style="color:aqua; "
+              >忘记密码?</a
+            >
+          </div>
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="login-footer">
           <el-button @click="blogLogin()" type="success">登录</el-button>
           <el-button @click="toRegister()" type="warning" plain
             >前往注册</el-button
@@ -44,6 +49,9 @@ export default {
     toRegister() {
       this.$router.push({ path: "/register" })
     },
+    toResetPwd() {
+      this.$router.push({ path: "/resetpwd" })
+    },
     blogLogin() {
       if (
         this.formData.username.length == 0 ||
@@ -68,12 +76,20 @@ export default {
 <style scope>
 #login-page {
   height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .loginbox {
-  padding: 10px 10px;
+  padding: 20px;
+  height: 50vh;
+  width: 40vw;
+}
+
+.login-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.el-button {
+  margin-right: 20px;
 }
 </style>

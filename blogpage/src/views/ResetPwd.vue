@@ -1,9 +1,9 @@
 <template>
-  <div id="register-page" class="flex">
-    <div class="page registerbox" @keyup.enter="blogRegister">
+  <div id="reset-page" class="flex">
+    <div class="page resetbox">
       <div class="header">
-        新用户注册
-        <el-divider></el-divider>
+        重置密码
+        <el-divider />
       </div>
       <el-form
         :label-position="labelPosition"
@@ -13,16 +13,16 @@
         <el-form-item label="用户名">
           <el-input v-model="formData.username"></el-input>
         </el-form-item>
-        <el-form-item label="密码">
+        <el-form-item label="新密码">
           <el-input v-model="formData.password" show-password></el-input>
         </el-form-item>
         <el-form-item label="重复密码">
           <el-input v-model="formData.repassword" show-password></el-input>
         </el-form-item>
-        <el-form-item class="register-footer">
-          <el-button @click="blogRegister()" type="success">注册</el-button>
+        <el-form-item class="reset-footer">
+          <el-button @click="blogResetPwd()" type="success">重置</el-button>
           <el-button @click="toLogin()" type="warning" plain
-            >已有账号</el-button
+            >返回登录页面</el-button
           >
         </el-form-item>
       </el-form>
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import axios from "axios"
+import Qs from "qs"
 export default {
   data() {
     return {
@@ -56,7 +58,7 @@ export default {
     toLogin() {
       this.$router.push({ path: "login/" })
     },
-    blogRegister() {
+    blogResetPwd() {
       if (
         this.formData.username.length == 0 ||
         this.formData.password.length == 0 ||
@@ -79,24 +81,39 @@ export default {
         this.messageNotify("警告", "密码不能低于8位!", "warning")
         return
       }
-      this.$store.dispatch("blogRegister", this.formData)
+
+      if (this.formData.username.length != 0) {
+        axios({
+          url: this.$store.state.baseUrl + "api/wong-resetpwd/",
+          method: "post",
+          data: Qs.stringify(this.formData)
+        }).then(res => {
+          console.log(res.data)
+          if (res.data == "not_exist") {
+            this.messageNotify("警告", "账号不存在", "warning")
+            return
+          } else {
+            this.messageNotify("成功", "修改成功", "success")
+            this.$router.push({ path: "login/" })
+          }
+        })
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-#register-page {
+#reset-page {
   height: 80vh;
 }
-
-.registerbox {
+.resetbox {
   padding: 10px 10px;
   height: 50vh;
   width: 40vw;
 }
 
-.register-footer {
+.reset-footer {
   display: flex;
   justify-content: center;
 }

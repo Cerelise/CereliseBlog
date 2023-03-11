@@ -100,6 +100,22 @@ def wong_register(request):
     return Response(userinfo_data)
 
 
+@api_view(['POST'])
+def wong_reset_pwd(request):
+    username = request.POST['username']
+    password = request.POST['password']
+
+    user = User.objects.filter(username=username)
+    if not user:
+        return Response('not_exist')
+    else:
+        new_password = make_password(password, username)
+        User.objects.filter(username=username).update(password=new_password)
+        new_user = User.objects.filter(username=username)
+        print(new_user)
+        return Response('ok')
+
+
 #自动登录
 @api_view(['POST'])
 def wong_autoLogin(request):

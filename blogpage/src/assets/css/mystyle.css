@@ -29,6 +29,16 @@ html {
   font-weight: 700;
 }
 
+/* 布局样式 */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 /* 文章查看 */
 .body.page .header {
   text-align: center;
@@ -231,3 +241,5 @@ html {
   background: #00000060;
   color: #fff;
 }
+
+

@@ -20,9 +20,11 @@ urlpatterns = [
     path('wong-login/', api.wong_login),
     # 注册
     path('wong-register/', api.wong_register),
+    # 修改密码
+    path('wong-resetpwd/', api.wong_reset_pwd),
     # 自动登录
     path('wong-autologin/', api.wong_autoLogin),
-    #登出
+    # 登出
     path('wong-logout/', api.wong_logout),
     # 鉴权
     path('wong-checkperm/', api.wong_checkperm),
